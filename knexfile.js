@@ -2,12 +2,11 @@ const path = require("path");
 
 module.exports = {
   development: {
-    client: "sqlite3",
+    client: "pg",
     connection: {
-      filename: path.resolve(__dirname, "src", "database", "database.db"),
-    },
-    pool: {
-      afterCreate: (conn, cb) => conn.run("PRAGMA foreign_keys = ON", cb),
+      database: "knex_database",
+      user: "postgres",
+      password: "123"
     },
     migrations: {
       directory: path.resolve(

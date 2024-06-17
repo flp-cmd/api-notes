@@ -1,7 +1,6 @@
 const knex = require("../database/knex");
 const AppError = require("../utils/AppError");
 
-const sqliteConnection = require("../database/sqlite");
 const { response } = require("express");
 
 class NotesController {
@@ -9,11 +8,14 @@ class NotesController {
     const { title, description, tags, links } = request.body;
     const user_id = request.user.id;
 
-    const [note_id] = await knex("notes").insert({
+    const insertedIds = await knex("notes").insert({
       title,
       description,
       user_id,
-    });
+    })
+    .returning('id');
+
+    const note_id = insertedIds[0].id
 
     const linksInsert = links.map((link) => {
       return {

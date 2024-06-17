@@ -6,7 +6,7 @@ class TagsController {
 
     const tags = await knex("tags")
     .where({ user_id })
-    .groupBy("name")
+    .groupBy("id","name")
 
     return response.json(tags)
   }
