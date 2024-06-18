@@ -18,7 +18,7 @@ module.exports = {
     },
     pool: {
       min: 0,
-      max: 100,
+      max: 7,
      },
     migrations: {
       directory: path.resolve(
