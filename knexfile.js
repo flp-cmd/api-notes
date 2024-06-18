@@ -1,18 +1,18 @@
 const path = require("path");
+require('dotenv').config()
 
 
 module.exports = {
   development: {
     client: "pg",
     connection: {
-      host: "rocket-notes-rocket-notes-db.e.aivencloud.com",
-      port: 17771,
-      user: "avnadmin",
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
-      database: "defaultdb",
+      database: process.env.DB_DATABASE,
       ssl: {
-        rejectUnauthorized: true,
-        ca: process.env.CA_CERTIFICATE, 
+        rejectUnauthorized: false,
       }
     },
     pool: { min: 0, max: 10 },
