@@ -17,9 +17,10 @@ module.exports = {
       }
     },
     pool: {
-      min: 0,
+      min: 2,
       max: 7,
       propagateCreateError: false,
+      idleTimeoutMillis: 600000,
      },
     migrations: {
       directory: path.resolve(
