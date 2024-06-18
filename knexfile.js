@@ -1,7 +1,5 @@
 const path = require("path");
-var parse = require('pg-connection-string').parse;
 
-var config = parse('postgres://avnadmin:AVNS_bw-xOCWkfmwwokdBfR2@rocketnotesdb-rocket-notes-db.e.aivencloud.com:17771/defaultdb?sslmode=require')
 
 module.exports = {
   development: {
