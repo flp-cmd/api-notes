@@ -13,14 +13,13 @@ module.exports = {
       database: process.env.DB_DATABASE,
       ssl: {
         rejectUnauthorized: false,
+        ca: process.env.DB_CA_CERT
       }
     },
     pool: {
       min: 0,
-      max: 20,
-      acquireTimeoutMillis: 60000,
-      idleTimeoutMillis: 30000,
-    },
+      max: 100,
+     },
     migrations: {
       directory: path.resolve(
         __dirname,
