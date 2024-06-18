@@ -16,16 +16,14 @@ class NotesController {
     .returning('id');
 
     const note_id = insertedIds[0].id
-
+    
     const linksInsert = links.map((link) => {
       return {
         note_id,
         url: link,
       };
     });
-
-    await knex("links").insert(linksInsert);
-
+    
     const tagsInsert = tags.map(name => {
       return {
         note_id,
@@ -33,7 +31,8 @@ class NotesController {
         user_id,
       };
     });
-
+    
+    await knex("links").insert(linksInsert);
     await knex("tags").insert(tagsInsert);
 
     return response.json();
