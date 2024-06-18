@@ -15,7 +15,12 @@ module.exports = {
         rejectUnauthorized: false,
       }
     },
-    pool: { min: 0, max: 10 },
+    pool: {
+      min: 0,
+      max: 20,
+      acquireTimeoutMillis: 60000,
+      idleTimeoutMillis: 30000,
+    },
     migrations: {
       directory: path.resolve(
         __dirname,
