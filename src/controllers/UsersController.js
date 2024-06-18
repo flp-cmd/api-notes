@@ -8,21 +8,27 @@ class UsersController {
   async create(request, response) {
     const { name, email, password } = request.body;
 
-    const userExists = await knex("users").where({ email }).first()
-
-    if (userExists) {
-      throw new AppError("Este email já está em uso!");
+    try {
+      const userExists = await knex("users").where({ email }).first()
+  
+      if (userExists) {
+        throw new AppError("Este email já está em uso!");
+      }
+  
+      const hashedPassword = await hash(password, 8);
+  
+      await knex("users").insert({
+        name,
+        email,
+        password: hashedPassword,
+      })
+  
+      return response.status(201).json({});
+      
+    } catch (error) {
+      console.log(error)
     }
 
-    const hashedPassword = await hash(password, 8);
-
-    await knex("users").insert({
-      name,
-      email,
-      password: hashedPassword,
-    })
-
-    return response.status(201).json({});
   }
 
   async update(request, response) {
