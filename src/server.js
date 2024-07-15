@@ -37,6 +37,11 @@ app.use((error, request, response, next) => {
 });
 
 
+app.get('/ping', (req, res) => {
+  res.send('API is alive!');
+});
+
+
 const PORT =  process.env.SERVER_PORT || 3000
 
 app.listen(PORT, () => console.log(`Server is running on Port: ${PORT}`));
